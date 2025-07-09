@@ -29,7 +29,7 @@
 <li> smtplib</li>
 <li>requests</li>
 <li>json</li>
-<li>defflib</li>
+<li>difflib</li>
 <li>geocoder</li>
 <li>pyjokes</li>
 <li>psutil</li>
