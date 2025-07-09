@@ -1,8 +1,21 @@
-from pytube import *
-from tkinter import *
-from tkinter.filedialog import *
-from tkinter.messagebox import *
-from threading import *
+from pytube import YouTube
+from tkinter import (
+    Tk,
+    Label,
+    Entry,
+    Button,
+    PhotoImage,
+    BOTTOM,
+    X,
+    TOP,
+    CENTER,
+    END,
+    NORMAL,
+    DISABLED,
+)
+from tkinter.filedialog import askdirectory
+from tkinter.messagebox import showinfo
+from threading import Thread
 file_size = 0
 
 
