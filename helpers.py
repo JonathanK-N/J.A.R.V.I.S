@@ -1,3 +1,4 @@
+import os
 import pyttsx3
 import pyautogui
 import psutil
@@ -21,9 +22,28 @@ def speak(audio) -> None:
     engine.runAndWait()
 
 
-def screenshot() -> None:
+def screenshot(path: str | None = None) -> str:
+    """Save a screenshot to ``path``.
+
+    Parameters
+    ----------
+    path:
+        Destination file path. If ``None`` (default), the ``SCREENSHOT_PATH``
+        environment variable is consulted. When neither is provided the image
+        is saved as ``screenshot.png`` in the current working directory.
+
+    Returns
+    -------
+    str
+        The absolute path of the saved screenshot.
+    """
+
+    if path is None:
+        path = os.getenv("SCREENSHOT_PATH", "screenshot.png")
+
     img = pyautogui.screenshot()
-    img.save("path of folder you want to save/screenshot.png")
+    img.save(path)
+    return os.path.abspath(path)
 
 
 def cpu() -> None:
