@@ -42,17 +42,19 @@
 pip install -r requirements.txt
 ```
 
-> _ To install PyAudio on windows head over to https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio and download the .whl for your machine and run the installation as shown below, then install the remaining dependencies from the requirements.txt file. You may remove pyAduio from the requirements file if it interrupts your installation (its there for unix users)
+> _On **Windows**, download a matching wheel for [`PyAudio`](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio) and install it manually before the rest of the requirements._
 ```bash
-pip install PyAudio‑0.2.11‑cp<version>‑cp<version>m‑win_amd<architecture>.whl
+pip install PyAudio-0.2.14-cp<version>-cp<version>m-win_amd<architecture>.whl
 ```
 
-### On Ubuntu based Linux distribution you need to install the following packages, so that the code works:
+### On Ubuntu based Linux distribution you need to install the following packages so that the code works:
 
 ```
-sudo apt-get update && sudo apt-get install espeak
+sudo apt-get update && sudo apt-get install espeak portaudio19-dev python3-pyaudio
 
 ```
+
+The dependency list was verified on **Ubuntu 22.04** and **Windows 10** with Python 3.8.
 ### Environment Variables
 
 Set the following variables in your shell or `.env` file before running J.A.R.V.I.S:
