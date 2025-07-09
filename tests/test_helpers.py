@@ -4,6 +4,7 @@ import types
 import pytest
 import os
 
+
 # Fixture to provide the helpers module with dummy dependencies
 @pytest.fixture
 def helpers(monkeypatch):
@@ -18,7 +19,9 @@ def helpers(monkeypatch):
         runAndWait=lambda: None,
     )
     dummy_pyttsx3 = types.SimpleNamespace(init=lambda: dummy_engine)
-    dummy_geocoder = types.SimpleNamespace(ip=lambda arg: types.SimpleNamespace(latlng=[10, 20]))
+    dummy_geocoder = types.SimpleNamespace(
+        ip=lambda arg: types.SimpleNamespace(latlng=[10, 20])
+    )
 
     monkeypatch.setitem(sys.modules, "pyttsx3", dummy_pyttsx3)
     monkeypatch.setitem(sys.modules, "pyautogui", types.ModuleType("pyautogui"))
@@ -60,6 +63,7 @@ def test_weather(monkeypatch, helpers):
                     "wind": {"speed": 3},
                     "main": {"temp": 15, "humidity": 80},
                 }
+
         return Resp()
 
     monkeypatch.setattr(helpers.requests, "get", fake_get, raising=False)
