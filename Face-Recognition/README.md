@@ -10,7 +10,7 @@ Face Recognition tutorial reference for https://youtu.be/BG3mpdzk0Rw
 
 
 # steps
-[ run the Sample generator.py and enter a unique numeric id to create face samples with your face ]
+[ run the Sample_generator.py and enter a unique numeric id to create face samples with your face ]
 
-[ run Model Trainer.py ]
-[ run Face recognition.py ]
+[ run Model_Trainer.py ]
+[ run Face_recognition.py ]
