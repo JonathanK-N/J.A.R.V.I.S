@@ -4,17 +4,17 @@ import webbrowser
 from sys import platform
 import os
 
-if platform == "linux" or platform == "linux2":
-    chrome_path = '/usr/bin/google-chrome'
-
-elif platform == "darwin":
-    chrome_path = 'open -a /Applications/Google\ Chrome.app'
-
-elif platform == "win32":
-    chrome_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-else:
-    print('Unsupported OS')
-    exit(1)
+chrome_path = os.getenv("CHROME_PATH")
+if not chrome_path:
+    if platform == "linux" or platform == "linux2":
+        chrome_path = "/usr/bin/google-chrome"
+    elif platform == "darwin":
+        chrome_path = "open -a /Applications/Google\ Chrome.app"
+    elif platform == "win32":
+        chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+    else:
+        print("Unsupported OS")
+        exit(1)
 
 webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
 

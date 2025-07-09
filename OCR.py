@@ -1,7 +1,8 @@
 import cv2
 import pytesseract
+import os
 
-pytesseract.pytesseract.tesseract_cmd="C:\Program Files\Tesseract-OCR\\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = os.getenv("TESSERACT_CMD", r"C:\Program Files\Tesseract-OCR\tesseract.exe")
 
 
 def OCR():
@@ -24,5 +25,4 @@ def OCR():
         imgT=cv2.putText(imgT,textRecongized,(img.shape[0]+120,img.shape[1]+120), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0,255,0), 1, cv2.LINE_AA)
         cv2.imshow("Image", imgT)
         
-        if cv2.waitKey(1) and 0xFF == ord('q'):    
-            break
+        if cv2.waitKey(1) and 0xFF == ord('q'):                break

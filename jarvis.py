@@ -12,7 +12,6 @@ from diction import translate
 from helpers import *
 from youtube import youtube
 from sys import platform
-import os
 import getpass
 import cv2
 
@@ -24,17 +23,17 @@ engine.setProperty('voice', voices[0].id)
 
 class Jarvis:
     def __init__(self) -> None:
-        if platform == "linux" or platform == "linux2":
-            self.chrome_path = '/usr/bin/google-chrome'
-
-        elif platform == "darwin":
-            self.chrome_path = 'open -a /Applications/Google\ Chrome.app'
-
-        elif platform == "win32":
-            self.chrome_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-        else:
-            print('Unsupported OS')
-            exit(1)
+        self.chrome_path = os.getenv("CHROME_PATH")
+        if not self.chrome_path:
+            if platform == "linux" or platform == "linux2":
+                self.chrome_path = "/usr/bin/google-chrome"
+            elif platform == "darwin":
+                self.chrome_path = "open -a /Applications/Google\ Chrome.app"
+            elif platform == "win32":
+                self.chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+            else:
+                print("Unsupported OS")
+                exit(1)
         webbrowser.register(
             'chrome', None, webbrowser.BackgroundBrowser(self.chrome_path)
         )
@@ -56,8 +55,10 @@ class Jarvis:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
-        server.login('email', 'password')
-        server.sendmail('email', to, content)
+        user = os.getenv("EMAIL_USER")
+        password = os.getenv("EMAIL_PASS")
+        server.login(user, password)
+        server.sendmail(user, to, content)
         server.close()
 
     def execute_query(self, query):
@@ -112,7 +113,8 @@ class Jarvis:
             webbrowser.get('chrome').open_new_tab('https://stackoverflow.com')
 
         elif 'play music' in query:
-            os.startfile("D:\\RoiNa.mp3")
+            music_file = os.getenv("MUSIC_FILE", "D:\RoiNa.mp3")
+            os.startfile(music_file)
 
         elif 'search youtube' in query:
             speak('What you want to search on Youtube?')
