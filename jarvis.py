@@ -9,7 +9,7 @@ import smtplib
 from news import speak_news, getNewsUrl
 from OCR import OCR
 from diction import translate
-from helpers import *
+from helpers import speak, weather, takeCommand, cpu, joke, screenshot
 from youtube import youtube
 from sys import platform
 import getpass
