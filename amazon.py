@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pyttsx3
 import smtplib
 
+import os
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
@@ -17,11 +18,13 @@ def send_email():
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('sendersemail', 'password')
+    user = os.getenv('EMAIL_USER')
+    password = os.getenv('EMAIL_PASS')
+    server.login(user, password)
     subject = 'Price fell down!'
     body = 'https://www.amazon.in/WOW-Brightening-Vitamin-Face-Wash/dp/B07SZ243VZ/ref=sr_1_6?dchild=1&keywords=wow+face+wash&qid=1594306550&smid=A27LPMZIGZ21IK&sr=8-6'
     content = f'Subject: {subject}\n\n{body}'
-    server.sendmail('email', 'receiver email', content)
+    server.sendmail(user, 'receiver email', content)
     server.close()
 
 

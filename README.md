@@ -53,6 +53,17 @@ pip install PyAudio‑0.2.11‑cp<version>‑cp<version>m‑win_amd<architecture
 sudo apt-get update && sudo apt-get install espeak
 
 ```
+### Environment Variables
+
+Set the following variables in your shell or `.env` file before running J.A.R.V.I.S:
+
+- `EMAIL_USER` – email address used for sending mails
+- `EMAIL_PASS` – password or app token for `EMAIL_USER`
+- `NEWS_API_KEY` – API key for the news service
+- `CHROME_PATH` – optional path to the Chrome executable
+- `TESSERACT_CMD` – optional path to the Tesseract OCR executable
+- `MUSIC_FILE` – optional path of the mp3 file used when the "play music" command is triggered
+
 
 ### What it does...
 
