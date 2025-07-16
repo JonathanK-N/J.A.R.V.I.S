@@ -65,6 +65,7 @@ Set the following variables in your shell or `.env` file before running J.A.R.V.
 - `CHROME_PATH` – optional path to the Chrome executable
 - `TESSERACT_CMD` – optional path to the Tesseract OCR executable
 - `MUSIC_FILE` – optional path of the mp3 file used when the "play music" command is triggered
+- `SCREENSHOT_PATH` – optional file destination for screenshots (defaults to `screenshot.png`)
 
 
 ### What it does...
